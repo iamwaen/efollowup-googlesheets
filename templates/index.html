@@ -6,17 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-follow up (ระบบติดตามผลหลังการฝึกอบรม)</title>
+
+    <link rel="stylesheet" type="text/css" href="static/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/datatables.min.css" />
+
+    <script type="text/javascript" src="static/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="static/fontawesome/js/all.min.js"></script>
+    <script type="text/javascript" src="static/js/datatables.min.js"></script>
 </head>
 
 <body>
-    <h2>e-follow up</h2>
-    <ol>
-        {%for i in range(0, len)%}
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <!-- <a class="navbar-item" href="#">
+                    <img src="static/original.png" width="112" height="28">
+                </a> -->
 
-        <li>{{listdata[i]}}</li>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
 
-        {%endfor%}
-    </ol>
+            <div id="navbar" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="#">Home</a>
+                    <a class="navbar-item" href="#">Dashboard</a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <span class="icon">
+                                    <i class="fas fa-download"></i>
+                                </span>
+                                <strong>Download Excel file</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <h2>e-follow up</h2>
+        <table class="table is-hoverable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>รหัสพนักงาน</th>
+                    <th>ชื่อ</th>
+                    <th>นามสกุล</th>
+                    <th>ตำแหน่ง</th>
+                    <th>สังกัด</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {%for i in range(1, len)%}
+                <tr>
+                    <th>{{i}}</th>
+                    <!-- {%for x in listdata[i] %} -->
+                    <td>{{listdata[i]}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
 </body>
 
 </html>

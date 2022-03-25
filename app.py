@@ -22,8 +22,9 @@ def home():
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,  range=RANGE_NAME).execute()
     values = result.get('values')
-       
-    return render_template("index.html", len = len(values), listdata = values)
+
+    return render_template('index.html', len = len(values), listdata = values)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
+    # app.run(debug=True, host='0.0.0.0')
