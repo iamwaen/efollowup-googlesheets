@@ -23,7 +23,8 @@ def home():
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,  range=RANGE_NAME).execute()
     values = result.get('values')
 
-    return render_template('index.html', len = len(values), listdata = values)
+    return render_template('base.html', len = len(values), listdata = values)
+    # return render_template('base.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
