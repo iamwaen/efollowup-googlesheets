@@ -18,6 +18,3 @@ sheet = service.spreadsheets()
 result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,  range=RANGE_NAME).execute()
 values = result.get('values', [])
 print(values)
-
-# rows = result.get('values', [])
-# print('{0} rows retrieved.'.format(len(rows)))
