@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-follow up (ระบบติดตามผลหลังการฝึกอบรม)</title>
 
-    <link rel="stylesheet" type="text/css" href="static/css/bulma.css">
-    <link rel="stylesheet" type="text/css" href="static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/bulma.css" />
+    <link rel="stylesheet" type="text/css" href="static/fontawesome/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="static/datatables/datatables.min.css" />
 
     <script type="text/javascript" src="static/js/jquery-3.6.0.min.js"></script>
@@ -38,21 +38,9 @@
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <!-- <a class="navbar-item"> Home </a> -->
+                    <a class="navbar-item" href="/"> ตรวจสอบสถานะ </a>
                     <a class="navbar-item" href="/dashboard"> Dashboard </a>
                 </div>
-                <!-- <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <span class="icon">
-                                    <i class="fa-solid fa-download"></i>
-                                </span>
-                                <strong>Dashboard</strong>
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </nav>
     </div>
@@ -63,14 +51,11 @@
             สามารถตรวจสอบสถานะการตอบแบบประเมินได้ โดยระบุคำค้นหาที่ต้องการในช่อง "ค้นหา"
         </h3>
 
-        <p></p>
-
         <table class="table is-fullwidth" id="coursedata">
             <thead>
                 <tr class="has-text-centered">
                     <th style="vertical-align: middle;">หลักสูตร</th>
                     <th style="vertical-align: middle;">รหัสพนักงาน</th>
-                    <!-- <th colspan="3">ชื่อ-นามสกุล</th> -->
                     <th style="vertical-align: middle;">คำนำหน้า</th>
                     <th style="vertical-align: middle;">ชื่อ</th>
                     <th style="vertical-align: middle;">นามสกุล</th>
@@ -84,25 +69,32 @@
                 {% for i in range(1, len) %}
                 <tr>
                     {% set item = listdata[i] %}
-                    <th class="has-text-centered">{{item[0]}}</th>
-                    <td class="has-text-centered">{{item[0]}}</td>
-                    <td class="">{{item[1]}}</td>
-                    <td class="">{{item[2]}}</td>
-                    <td class="">{{item[3]}}</td>
-                    <td class="has-text-centered">{{item[4]}}</td>
-                    <td class="has-text-centered">{{item[5]}}</td>
+                    <td style="vertical-align: middle;" class="is-size-6 ">{{item[1]}}</td>
+                    <td style="vertical-align: middle;" class="has-text-centered">{{item[2]}}</td>
+                    <td style="vertical-align: middle;" class="">{{item[3]}}</td>
+                    <td style="vertical-align: middle;" class="">{{item[4]}}</td>
+                    <td style="vertical-align: middle;" class="">{{item[5]}}</td>
+                    <td style="vertical-align: middle;" class="has-text-centered">{{item[6]}}</td>
+                    <td style="vertical-align: middle;" class="has-text-centered">{{item[7]}}</td>
 
-                    {% if item[6] == 'ตอบแล้ว' %}
-                    <td class="has-text-primary has-background-primary-light has-text-centered">{{item[6]}}</td>
-                    {% elif item[6] == 'ยังไม่ตอบ'%}
-                    <td class="has-text-danger has-background-danger-light has-text-centered">{{item[6]}}</td>
+                    {% if item[9] == 'ตอบแล้ว' %}
+                    <td style="vertical-align: middle;" class="has-text-primary has-text-centered">{{item[9]}}</td>
+                    {% elif item[9] == 'ยังไม่ตอบ'%}
+                    <td class="has-text-centered">
+                        <a class="button is-danger is-outlined is-rounded is-small" href="{{item[11]}}"
+                            target="_blank">{{item[9]}}</a>
+                    </td>
                     {% endif %}
 
 
-                    {% if item[6] == 'ตอบแล้ว' %}
-                    <td class="has-text-primary has-background-primary-light has-text-centered">{{item[6]}}</td>
-                    {% elif item[6] == 'ยังไม่ตอบ'%}
-                    <td class="has-text-danger has-background-danger-light has-text-centered">{{item[6]}}</td>
+                    {% if item[10] == 'ตอบแล้ว' %}
+                    <!-- <td class="has-text-primary has-background-primary-light has-text-centered">{{item[10]}}</td> -->
+                    <td style="vertical-align: middle;" class="has-text-primary has-text-centered">{{item[10]}}</td>
+                    {% elif item[10] == 'ยังไม่ตอบ'%}
+                    <td class="has-text-centered">
+                        <a class="button is-danger is-outlined is-rounded is-small" href="{{item[12]}}"
+                            target="_blank">{{item[10]}}</a>
+                    </td>
                     {% endif %}
                 </tr>
                 {% endfor %}
@@ -120,11 +112,34 @@
 
 <script>
     $(document).ready(function () {
+
         $('#coursedata').DataTable({
             'pageLength': 25,
             language: {
                 url: 'static/datatables/th.json'
             },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'button is-info',
+                    text: '<i class="fa-solid fa-print"></i> Print',
+                },
+                {
+                    extend: 'csv',
+                    className: 'button is-info',
+                    text: '<i class="fa-solid fa-file-csv"></i> Export to CSV',
+                }
+            ]
+
         });
     });
 </script>
