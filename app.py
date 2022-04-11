@@ -15,7 +15,7 @@ def home():
     creds = None
     creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
-    SPREADSHEET_ID = '1BoSNCRqZmFZ6r4bp2T2p88VbLBd-OjBoqUzfEo1iPhY'
+    SPREADSHEET_ID = 'SPREADSHEET_ID'
     RANGE_NAME = 'Summary_Result!A1:M'
 
     service = build('sheets', 'v4', credentials=creds)
@@ -33,16 +33,16 @@ def dashboard():
     creds = None
     creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
-    SPREADSHEET_ID = '1BoSNCRqZmFZ6r4bp2T2p88VbLBd-OjBoqUzfEo1iPhY'
-    RANGE_NAME = 'Sheet7!B1:R3'
+    SPREADSHEET_ID = 'SPREADSHEET_ID'
+    RANGE_NAME = 'Dashboard!B1:R4'
 
     service = build('sheets', 'v4', credentials=creds)
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,  range=RANGE_NAME).execute()
-    values = result.get('values')
+    values = result.get('values',[])
     
     return render_template('dashboard.html', len = len(values), listdata = values)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    # app.run(debug=False, host='0.0.0.0')
+    # app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0')
