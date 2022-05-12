@@ -88,7 +88,6 @@
 
 
                     {% if item[10] == 'ตอบแล้ว' %}
-                    <!-- <td class="has-text-primary has-background-primary-light has-text-centered">{{item[10]}}</td> -->
                     <td style="vertical-align: middle;" class="has-text-primary has-text-centered">{{item[10]}}</td>
                     {% elif item[10] == 'ยังไม่ตอบ'%}
                     <td class="has-text-centered">
@@ -122,22 +121,19 @@
             buttons: [
                 {
                     extend: 'print',
-                    customize: function (win) {
-                        $(win.document.body)
-                            .css('font-size', '10pt');
-
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
-                    },
                     className: 'button is-info',
                     text: '<i class="fa-solid fa-print"></i> Print',
+                },
+                {
+                    extend: 'copy',
+                    className: 'button is-info',
+                    text: '<i class="fa-solid fa-copy"></i> Copy',
                 },
                 {
                     extend: 'csv',
                     className: 'button is-info',
                     text: '<i class="fa-solid fa-file-csv"></i> Export to CSV',
-                }
+                },
             ]
 
         });
