@@ -60,6 +60,58 @@
             </div>
         </div>
 
+        <div class="columns mt-6">
+            <div class="column">
+                <p class="has-text-centered">จำนวน<u>ผู้เข้าอบรมที่ต้องตอบแบบประเมิน</u> แยกตามสายงาน</p>
+                <table class="table table is-bordered has-text-centered mt-3 is-size-7">
+                    <thead>
+                        <tr>
+                            <th style="vertical-align: middle;" colspan="18">สายงาน</th>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">จำนวน</th>
+                            {% for i in listdata[6] %}
+                            <th style="vertical-align: middle;">{{i}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">ตอบ/ทั้งหมด</td>
+                            {% for i in listdata[10] %}
+                            <td style="vertical-align: middle;">{{i}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <p class="has-text-centered">จำนวน<u>หัวหน้างานขั้นต้นที่ต้องตอบแบบประเมิน</u> แยกตามสายงาน</p>
+                <table class="table table is-bordered has-text-centered mt-3 is-size-7">
+                    <thead>
+                        <tr>
+                            <th style="vertical-align: middle;" colspan="18">สายงาน</th>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">จำนวน</th>
+                            {% for i in listdata[6] %}
+                            <th style="vertical-align: middle;">{{i}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">ตอบ/ทั้งหมด</td>
+                            {% for i in listdata[11] %}
+                            <td style="vertical-align: middle;">{{i}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
 
         <footer class="footer mt-6">
             <div class="content has-text-centered">
