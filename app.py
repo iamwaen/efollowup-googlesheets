@@ -34,7 +34,7 @@ def dashboard():
     creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
     SPREADSHEET_ID = 'SPREADSHEET_ID'
-    RANGE_NAME = 'Dashboard!B1:R4'
+    RANGE_NAME = 'Dashboard!B1:R12'
 
     service = build('sheets', 'v4', credentials=creds)
     sheet = service.spreadsheets()
